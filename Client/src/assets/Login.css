@@ -1,0 +1,84 @@
+/* General Reset */
+
+.login-page {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  min-height: 80vh;
+  min-width: 450px;
+
+ 
+}
+
+
+.login {
+ 
+  background-color: #eee8b8; /* SteelBlue color */
+  color: white;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;border-radius: 5px;
+}
+
+
+
+.login-form {
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgb(224, 224, 110);
+  width: 100%;
+  max-width: 350px;
+  min-height: 65vh;
+ align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+
+.login-password-visible {
+  position: absolute;
+  top: 48px;
+  left: 200px;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0%;
+  background: none;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #e4970a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #09ce93;
+}
+
+
+.register-link {
+  color: #d18902d5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+  color: #e4970a;
+}
+
