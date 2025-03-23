@@ -19,10 +19,10 @@ function Login() {
       setLoading(true);
 
       // Make API call to login endpoint
-      const response = await axios.post("http://localhost:8080/api/auth/login", {
-        username: "user", // Map email to username as per API requirements
-        password:"allenbasil",
-      });
+      // const response = await axios.post("http://localhost:8080/api/auth/login", {
+      //   username: "user", // Map email to username as per API requirements
+      //   password:"allenbasil",
+      // });
 
       // Save token or user data for session management
       const { token, username } = response.data;

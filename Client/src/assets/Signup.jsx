@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import "./Signup.css";
 import { Eye, EyeOff } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -20,27 +22,42 @@ function Signup() {
       return;
     }
 
+    axios.post("http://localhost:5000/signup", {username,email,password}).then(result=>{
+      if(result.status==200){
+console.log("user Registered successfully");
+navigate("/login")
+      }
+    })
+    .catch(err=>{
+      if(err.response.status==400){
+       alert("User already exists");
+      }else{
+        console.log("Error during registration:", err);
+      }
+    })
+
+   
     const userData = { username, email, password };
 
-    try {
-      setLoading(true);
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/signup",
-        userData
-      );
+    // try {
+    //   setLoading(true);
+    //   const response = await axios.post(
+    //     "http://localhost:8080/api/auth/signup",
+    //     userData
+    //   );
 
-      alert("Registered successfully!");
-      console.log("API Response:", response.data);
-    } catch (error) {
-      console.error("Error during registration:", error);
-      const errorMsg =
-        error.response?.data?.errorMessage ||
-        "An error occurred during registration.";
-      alert(errorMsg);
-    } finally {
-      setLoading(false);
-    }
-    console.log("user details", username);
+    //   alert("Registered successfully!");
+    //   console.log("API Response:", response.data);
+    // } catch (error) {
+    //   console.error("Error during registration:", error);
+    //   const errorMsg =
+    //     error.response?.data?.errorMessage ||
+    //     "An error occurred during registration.";
+    //   alert(errorMsg);
+    // } finally {
+    //   setLoading(false);
+    // }
+    console.log("user details", username,email);
   };
 
   return (
@@ -74,7 +91,9 @@ function Signup() {
                 Username
               </motion.label>
               <input
+              
                 type="text"
+                name="name"
                 value={username}
                 className="form-control"
                 id="username"
@@ -96,6 +115,7 @@ function Signup() {
               </motion.label>
               <input
                 type="email"
+                name="email"
                 value={email}
                 className="form-control"
                 id="email"
@@ -117,6 +137,7 @@ function Signup() {
               </motion.label>
               <input
                 type="password"
+                name="password"
                 value={password}
                 className="form-control"
                 id="password"
