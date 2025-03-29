@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Routes, Route, } from "react-router-dom";
+import { NavLink, Routes, Route,useNavigate } from "react-router-dom";
 import "./Login.css";
 import Signup from "./Signup";
 import { Eye, EyeOff } from "lucide-react";
@@ -11,23 +11,33 @@ function Login() {
   const [password, setPassword] = useState(""); // State for password
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false); // Loading state for login button
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       setLoading(true);
 
-      // Make API call to login endpoint
-      // const response = await axios.post("http://localhost:8080/api/auth/login", {
-      //   username: "user", // Map email to username as per API requirements
-      //   password:"allenbasil",
-      // });
+    const response =  await axios.post("http://localhost:5000/login", { username  ,password});
 
-      // Save token or user data for session management
-      const { token, username } = response.data;
-      localStorage.setItem("authToken", token);
-      localStorage.setItem("username", username);
+    
+    
+    
+          if(response.status === 200){
+    console.log("login successfull");
+   
+
+    const { token, username } = response.data;
+    localStorage.setItem("authToken", token);
+    localStorage.setItem("username", username);
+    navigate("/sample")
+          }
+        
+
+  
+
+
+     
 
       alert("Login successful!");
     } catch (error) {
